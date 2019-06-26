@@ -23,7 +23,43 @@ The configuration parameters for mysql：
 
  The operational table is 'carsales'. The data in this table is as follows:
  
- ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190626103325832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9xaWFueWFuZy1oZnV0LmJsb2cuY3Nkbi5uZXQ=,size_16,color_FFFFFF,t_70#pic_center)
- 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190626103413611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9xaWFueWFuZy1oZnV0LmJsb2cuY3Nkbi5uZXQ=,size_16,color_FFFFFF,t_70)
+
+The code for querying one column data is as follows：
+
+```java
+package com.test;
+import java.util.List;
+import com.db.MYSQLControl;
+
+public class Test {
+
+	public static void main(String[] args)  {
+		MYSQLControl control = new MYSQLControl("127.0.0.1:3306", "crawler", "root", "112233");
+		List<Object> list = control.getListOneBySQL("select month from carsales", "month");
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).toString());
+		}
+	}
+}
+```
+
+Running this code, we can obtain the following results:
+```
+2007-01-01
+2007-02-01
+2007-03-01
+2007-04-01
+2007-05-01
+2007-06-01
+2007-07-01
+2007-08-01
+2007-09-01
+2007-10-01
+2007-11-01
+...
+```
+
+
 
 
