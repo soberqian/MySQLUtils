@@ -135,3 +135,46 @@ public class CarSaleModel {
 }
 
 ```
+
+Next, we query multiple columns' data as follows:
+```java
+import java.util.List;
+
+import com.db.MYSQLControl;
+import com.model.CarSaleModel;
+
+public class QueryMultColumn {
+
+	public static void main(String[] args) {
+		MYSQLControl control = new MYSQLControl("127.0.0.1:3306", "crawler", "root", "112233");
+		List<CarSaleModel> listData = control.getListInfoBySQL("select month, sales from carsales", CarSaleModel.class);
+		for (CarSaleModel model : listData) {
+			System.out.println(model.getMonth() + "\t" + model.getSales());
+		}
+	}
+}
+
+```
+Running this code, we can obtain that:
+
+```java
+2007-01-01	14834
+2007-02-01	9687
+2007-03-01	18173
+2007-04-01	18508
+2007-05-01	19710
+2007-06-01	20311
+2007-07-01	17516
+2007-08-01	17535
+2007-09-01	17743
+2007-10-01	4000
+2007-11-01	17250
+...
+```
+## Insert List Data To A Table
+
+
+
+
+
+
