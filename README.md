@@ -85,4 +85,53 @@ Running this code, we can find that:
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190626105136307.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9xaWFueWFuZy1oZnV0LmJsb2cuY3Nkbi5uZXQ=,size_16,color_FFFFFF,t_70)
 
+## Create tab;e
+The code for creating a table is as follows：
+```java
+package com.test;
 
+import com.db.MYSQLControl;
+
+public class CreateTable {
+
+	public static void main(String[] args) {
+		MYSQLControl control = new MYSQLControl("127.0.0.1:3306", "crawler", "root", "112233");
+		String sql = "CREATE TABLE newcarsales " +
+                "(month varchar(50), " +
+                "sales varchar(255), " + 
+                " PRIMARY KEY ( month ))"; 
+		control.executeUpdate(sql);
+	}
+}
+```
+
+Running this code, we can find that:
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190626110217293.png)
+
+## Query Multiple Columns
+If we want to query multiple columns, we must use java bean.
+
+First, we create a model as follows:
+
+```java
+package com.model;
+
+public class CarSaleModel {
+	private String month;
+	private String sales;
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
+	public String getSales() {
+		return sales;
+	}
+	public void setSales(String sales) {
+		this.sales = sales;
+	}
+}
+
+```
