@@ -173,7 +173,120 @@ Running this code, we can obtain that:
 ```
 ## Insert List Data To A Table
 
+The code for inserting list is as follows：
 
+```java
+package com.test;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+import com.db.MYSQLControl;
+import com.model.CarSaleModel;
+
+public class InsertListData {
+
+	public static void main(String[] args) {
+		MYSQLControl control = new MYSQLControl("127.0.0.1:3306", "crawler", "root", "112233");
+		List<CarSaleModel> saleList = new ArrayList<CarSaleModel>();
+		CarSaleModel model1 = new CarSaleModel();
+		model1.setMonth("2007-01-01");
+		model1.setSales("14834");
+		CarSaleModel model2 = new CarSaleModel();
+		model2.setMonth("2007-02-01");
+		model2.setSales("9687");
+		//add data
+		saleList.add(model1);
+		saleList.add(model2);
+		try {
+			control.insertListData(saleList, "newcarsales");
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+```
+Running this code, we can find that:
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190626112419107.png)
+
+**This code is often used in crawler project.**
+
+## XML Using
+We can use XML file to configure the database:
+
+```java
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<connectionInfo>
+		<node1>
+			<nodeName>node1</nodeName>
+			<url>jdbc:mysql://127.0.0.1:3306/crawler</url>
+			<username>root</username>
+			<password>112233</password>
+		</node1>
+
+		<node2>
+			<nodeName>node2</nodeName>
+			<url>jdbc:mysql://114.213.252.26:3306/crawler</url>
+			<username>root</username>
+			<password>112233</password>
+		</node2>
+
+	</connectionInfo>
+</config>
+
+```
+
+Next, we can use the following code to operate the database based on the xml file:
+
+```java
+package com.test;
+
+import java.util.List;
+
+import com.db.MYSQLControl;
+import com.model.CarSaleModel;
+
+public class XMLMySQLDo {
+
+	public static void main(String[] args) {
+		MYSQLControl control = new MYSQLControl("node1");
+		List<CarSaleModel> listData = control.getListInfoBySQL("select month, sales from carsales", CarSaleModel.class);
+		for (CarSaleModel model : listData) {
+			System.out.println(model.getMonth() + "\t" + model.getSales());
+		}
+	}
+}
+
+```
+
+Running this code, we can obtain that:
+
+```java
+2007-01-01	14834
+2007-02-01	9687
+2007-03-01	18173
+2007-04-01	18508
+2007-05-01	19710
+2007-06-01	20311
+2007-07-01	17516
+2007-08-01	17535
+2007-09-01	17743
+2007-10-01	4000
+2007-11-01	17250
+...
+```
 
 
 
