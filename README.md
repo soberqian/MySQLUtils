@@ -1,2 +1,4 @@
 # MySQLUtils
-A java tool for mysql database operating (an easy-to-use interface for users)
+We develop this tool based on the java package [DbUtils](https://commons.apache.org/proper/commons-dbutils/). 
+
+
