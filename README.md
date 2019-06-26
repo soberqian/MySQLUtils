@@ -1,7 +1,7 @@
 # MySQLUtils
 I develop this tool based on the java package [Apache Commons DbUtils](https://commons.apache.org/proper/commons-dbutils/). 
 
-**This tool provides an easy-to-use interface to operate mysql database.**
+**This tool provides an easy-to-use interface for operating mysql database.**
 
 **Also, this tool supports XML database configuration and Java Bean.**
 
